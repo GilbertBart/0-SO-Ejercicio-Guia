@@ -9,7 +9,17 @@
 
 
 int contador;
-
+typedef struct
+{
+	//char name[20]; // El nombre del usuario conectado
+	int sock; // socket del usuario conectado
+}Tuser;
+typedef struct
+{
+	Tuser user[40];// Como maximoo se puede conectar 40 usuarios
+	int num;
+}TListaUsers;
+TListaUsers usuarios;
 //Estructura necesaria para acceso excluyente y no nos pasé lo de que se corte el tiempo de CPU
 //Antes de hacer el contador +1 o en medio del proceso ( Ver Vídeo L3.2 si hay más dudas,en el L3.3 es el codigo)
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
@@ -17,11 +27,17 @@ pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 void *AtenderCliente (void *socket)
 {
+	
 	int sock_conn;
 	int *s;
 	s = (int*) socket;
 	sock_conn= *s;
-	// int socket_conn = *(int*) socket;
+	// int socket_conn = *(int*) socket
+	
+	pthread_mutex_lock( &mutex ); //Indicamos que no interrumpas a partir de aquí
+	usuarios.user[usuarios.num].sock = sock_conn;
+	usuarios.num = usuarios.num +1;
+	pthread_mutex_unlock( &mutex ); // Inidicamos que ahora ya se puede interrumpir
 	
 	char peticion[512];
 	char respuesta[512];
@@ -130,7 +146,7 @@ int main(int argc, char *argv[])
 	
 	contador =0;
 	int i;
-	int sockets[100];
+	//int sockets[100];
 	pthread_t thread[100];
 	
 	// Bucle infito
@@ -140,12 +156,13 @@ int main(int argc, char *argv[])
 		sock_conn = accept(sock_listen, NULL, NULL);
 		printf ("He recibido conexion\n");
 		
+		
 		sockets [i] = sock_conn;
 		
 		//sock_conn es el socket que usaremos para este cliente
 		// Crear thread y decirle lo que tiene que hacer
 		
-		pthread_create (&thread[i], NULL, AtenderCliente,&sockets[i]);
+		pthread_create (&thread[i], NULL, AtenderCliente,sock_conn);
 	}
 		
 }
