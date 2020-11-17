@@ -88,12 +88,20 @@ E:\Docencia\SO\VideosEjercciioGuia\Leccion1\Codigo\cliente_con_conexion_desconex
 E:\Docencia\SO\VideosEjercciioGuia\Leccion1\Codigo\cliente_con_conexion_desconexion\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
 E:\Docencia\SO\VideosEjercciioGuia\Leccion1\Codigo\cliente_con_conexion_desconexion\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 E:\Docencia\SO\VideosEjercciioGuia\Leccion1\Codigo\cliente_con_conexion_desconexion\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.GenerateResource.Cache
-C:\share\S4\Ejercicio_Guia_Github\V3\cliente_con_conexion_desconexion\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
-C:\share\S4\Ejercicio_Guia_Github\V3\cliente_con_conexion_desconexion\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
-C:\share\S4\Ejercicio_Guia_Github\V3\cliente_con_conexion_desconexion\WindowsFormsApplication1\obj\Debug\clienteForm.csprojAssemblyReference.cache
-C:\share\S4\Ejercicio_Guia_Github\V3\cliente_con_conexion_desconexion\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
-C:\share\S4\Ejercicio_Guia_Github\V3\cliente_con_conexion_desconexion\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
-C:\share\S4\Ejercicio_Guia_Github\V3\cliente_con_conexion_desconexion\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.GenerateResource.cache
-C:\share\S4\Ejercicio_Guia_Github\V3\cliente_con_conexion_desconexion\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.CoreCompileInputs.cache
-C:\share\S4\Ejercicio_Guia_Github\V3\cliente_con_conexion_desconexion\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
-C:\share\S4\Ejercicio_Guia_Github\V3\cliente_con_conexion_desconexion\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+E:\Docencia\SO\VideosEjercciioGuia\Leccion3\cliente_con_conexion_desconexion\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+E:\Docencia\SO\VideosEjercciioGuia\Leccion3\cliente_con_conexion_desconexion\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+E:\Docencia\SO\VideosEjercciioGuia\Leccion3\cliente_con_conexion_desconexion\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+E:\Docencia\SO\VideosEjercciioGuia\Leccion3\cliente_con_conexion_desconexion\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+E:\Docencia\SO\VideosEjercciioGuia\Leccion3\cliente_con_conexion_desconexion\WindowsFormsApplication1\obj\Debug\clienteForm.csprojResolveAssemblyReference.cache
+E:\Docencia\SO\VideosEjercciioGuia\Leccion3\cliente_con_conexion_desconexion\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
+E:\Docencia\SO\VideosEjercciioGuia\Leccion3\cliente_con_conexion_desconexion\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+E:\Docencia\SO\VideosEjercciioGuia\Leccion3\cliente_con_conexion_desconexion\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.GenerateResource.Cache
+C:\Users\gilbe\Desktop\Universitat\3A\SO\SO\Repositori Individual\V3\cliente\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\Users\gilbe\Desktop\Universitat\3A\SO\SO\Repositori Individual\V3\cliente\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\Users\gilbe\Desktop\Universitat\3A\SO\SO\Repositori Individual\V3\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csprojAssemblyReference.cache
+C:\Users\gilbe\Desktop\Universitat\3A\SO\SO\Repositori Individual\V3\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
+C:\Users\gilbe\Desktop\Universitat\3A\SO\SO\Repositori Individual\V3\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\gilbe\Desktop\Universitat\3A\SO\SO\Repositori Individual\V3\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.GenerateResource.cache
+C:\Users\gilbe\Desktop\Universitat\3A\SO\SO\Repositori Individual\V3\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.CoreCompileInputs.cache
+C:\Users\gilbe\Desktop\Universitat\3A\SO\SO\Repositori Individual\V3\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Users\gilbe\Desktop\Universitat\3A\SO\SO\Repositori Individual\V3\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb

@@ -5,17 +5,108 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <stdio.h>
-#include <ctype.h>
+#include <pthread.h>
 
+
+int contador;
+
+//Estructura necesaria para acceso excluyente y no nos pasé lo de que se corte el tiempo de CPU
+//Antes de hacer el contador +1 o en medio del proceso ( Ver Vídeo L3.2 si hay más dudas,en el L3.3 es el codigo)
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+
+
+void *AtenderCliente (void *socket)
+{
+	int sock_conn;
+	int *s;
+	s = (int*) socket;
+	sock_conn= *s;
+	// int socket_conn = *(int*) socket;
+	
+	char peticion[512];
+	char respuesta[512];
+	int ret;
+	
+	int terminar =0;
+	// Entramos en un bucle para atender todas las peticiones de este cliente
+	//hasta que se desconecte
+	while (terminar ==0)
+	{
+		// Ahora recibimos la petici?n
+		ret=read(sock_conn,peticion, sizeof(peticion));
+		printf ("Recibido\n");
+		
+		// Tenemos que a?adirle la marca de fin de string 
+		// para que no escriba lo que hay despues en el buffer
+		peticion[ret]='\0';
+		
+		
+		printf ("Peticion: %s\n",peticion);
+		
+		// vamos a ver que quieren
+		char *p = strtok( peticion, "/");
+		int codigo =  atoi (p);
+		// Ya tenemos el c?digo de la petici?n
+		char nombre[20];
+		
+		if ((codigo !=0)&& (codigo!=4))
+		{
+			p = strtok( NULL, "/");
+			
+			strcpy (nombre, p);
+			// Ya tenemos el nombre
+			printf ("Codigo: %d, Nombre: %s\n", codigo, nombre);
+		}
+		
+		if (codigo ==0) //petici?n de desconexi?n
+			terminar=1;
+		else if (codigo =4)
+			sprintf (respuesta,"%d",contador);
+		else if (codigo ==1) //piden la longitd del nombre
+			sprintf (respuesta,"%d",strlen (nombre));
+		else if (codigo ==2)
+			// quieren saber si el nombre es bonito
+			if((nombre[0]=='M') || (nombre[0]=='S'))
+			strcpy (respuesta,"SI");
+			else
+				strcpy (respuesta,"NO");
+			else //quiere saber si es alto
+			{
+				p = strtok( NULL, "/");
+				float altura =  atof (p);
+				if (altura > 1.70)
+					sprintf (respuesta, "%s: eres alto",nombre);
+				else
+					sprintf (respuesta, "%s: eres bajo",nombre);
+			}
+
+			
+			if (codigo !=0)
+			{
+				
+				printf ("Respuesta: %s\n", respuesta);
+				// Enviamos respuesta
+				write (sock_conn,respuesta, strlen(respuesta));
+			}
+			if ((codigo ==1)||(codigo==2)|| (codigo==3))
+			{
+				pthread_mutex_lock( &mutex ); //Indicamos que no interrumpas a partir de aquí
+				contador=contador+1;
+				pthread_mutex_unlock( &mutex ); // Inidicamos que ahora ya se puede interrumpir
+			}
+			
+	}
+	// Se acabo el servicio para este cliente
+	close(sock_conn);
+}
 
 
 int main(int argc, char *argv[])
 {
 	
-	int sock_conn, sock_listen, ret;
+	int sock_conn, sock_listen;
 	struct sockaddr_in serv_adr;
-	char peticion[512];
-	char respuesta[512];
+	
 	// INICIALITZACIONS
 	// Obrim el socket
 	if ((sock_listen = socket(AF_INET, SOCK_STREAM, 0)) < 0)
@@ -37,92 +128,24 @@ int main(int argc, char *argv[])
 	if (listen(sock_listen, 3) < 0)
 		printf("Error en el Listen");
 	
+	contador =0;
 	int i;
-	// Bucle infinito
+	int sockets[100];
+	pthread_t thread[100];
+	
+	// Bucle infito
 	for (;;){
 		printf ("Escuchando\n");
 		
 		sock_conn = accept(sock_listen, NULL, NULL);
 		printf ("He recibido conexion\n");
-		//sock_conn es el socket que usaremos para este cliente
 		
-		int terminar =0;
-		// Entramos en un bucle para atender todas las peticiones de este cliente
-		//hasta que se desconecte
-		while (terminar ==0)
-		{
-			// Ahora recibimos la petici?n
-			ret=read(sock_conn,peticion, sizeof(peticion));
-			printf ("Recibido\n");
-			
-			// Tenemos que a?adirle la marca de fin de string 
-			// para que no escriba lo que hay despues en el buffer
-			peticion[ret]='\0';
-			
-			
-			printf ("Peticion: %s\n",peticion);
-			
-			// vamos a ver que quieren
-			char *p = strtok( peticion, "/");
-			int codigo =  atoi (p);
-			// Ya tenemos el c?digo de la petici?n
-			char nombre[20];
-			
-			if (codigo !=0)
-			{
-				p = strtok( NULL, "/");
-				
-				strcpy (nombre, p);
-				// Ya tenemos el nombre
-				printf ("Codigo: %d, Nombre: %s\n", codigo, nombre);
-			}
-			
-			if (codigo ==0) //petici?n de desconexi?n
-				terminar=1;
-			else if (codigo ==1) //piden la longitd del nombre
-				sprintf (respuesta,"%d",strlen (nombre));
-			else if (codigo ==2)
-				// quieren saber si el nombre es bonito
-				if((nombre[0]=='M') || (nombre[0]=='S'))
-				strcpy (respuesta,"SI");
-				else
-					strcpy (respuesta,"NO");
-				else if (codigo ==3) //quiere saber si es alto
-				{
-					p = strtok( NULL, "/");
-					float altura =  atof (p);
-					if (altura > 1.70)
-						sprintf (respuesta, "%s: eres alto",nombre);
-					else
-						sprintf (respuesta, "%s: eresbajo",nombre);
-				}
-				else if (codigo ==4)
-				{
-					int longitud = strlen(nombre);
-					int inicio =0, fin = longitud -1;
-					for(inicio,fin;inicio<=fin/2;inicio++,fin--)
-						if(nombre[inicio]==nombre[fin])
-							sprintf (respuesta, "El nombre %s es palindromo",nombre);
-						else
-							sprintf (respuesta, "El nombre %s no es palindromo",nombre);
-				}
-				else if (codigo ==5)
-				{
-					for(int i=0;nombre[i] !='\0';i++)
-						nombre[i]= toupper(nombre[i]);
-						sprintf(respuesta, " Aquí tienes tu nombre en mayusculas: \n%s",nombre);
-					
-				}
-				
-				if (codigo !=0)
-				{
-					
-					printf ("Respuesta: %s\n", respuesta);
-					// Enviamos respuesta
-					write (sock_conn,respuesta, strlen(respuesta));
-				}
-		}
-		// Se acabo el servicio para este cliente
-		close(sock_conn); 
+		sockets [i] = sock_conn;
+		
+		//sock_conn es el socket que usaremos para este cliente
+		// Crear thread y decirle lo que tiene que hacer
+		
+		pthread_create (&thread[i], NULL, AtenderCliente,&sockets[i]);
 	}
+		
 }

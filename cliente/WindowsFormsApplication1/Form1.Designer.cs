@@ -39,8 +39,8 @@
             this.alturaBox = new System.Windows.Forms.TextBox();
             this.Bonito = new System.Windows.Forms.RadioButton();
             this.button3 = new System.Windows.Forms.Button();
-            this.palindromo = new System.Windows.Forms.RadioButton();
-            this.mayusculas = new System.Windows.Forms.RadioButton();
+            this.button4 = new System.Windows.Forms.Button();
+            this.contLbl = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,7 +74,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(129, 173);
+            this.button2.Location = new System.Drawing.Point(126, 157);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 5;
@@ -85,8 +85,6 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.groupBox1.Controls.Add(this.mayusculas);
-            this.groupBox1.Controls.Add(this.palindromo);
             this.groupBox1.Controls.Add(this.Longitud);
             this.groupBox1.Controls.Add(this.altura);
             this.groupBox1.Controls.Add(this.label3);
@@ -101,24 +99,22 @@
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Peticion";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // Longitud
             // 
             this.Longitud.AutoSize = true;
-            this.Longitud.Location = new System.Drawing.Point(116, 80);
+            this.Longitud.Location = new System.Drawing.Point(116, 91);
             this.Longitud.Name = "Longitud";
             this.Longitud.Size = new System.Drawing.Size(166, 17);
             this.Longitud.TabIndex = 7;
             this.Longitud.TabStop = true;
             this.Longitud.Text = "Dime la longitud de mi nombre";
             this.Longitud.UseVisualStyleBackColor = true;
-            this.Longitud.CheckedChanged += new System.EventHandler(this.Longitud_CheckedChanged);
             // 
             // altura
             // 
             this.altura.AutoSize = true;
-            this.altura.Location = new System.Drawing.Point(116, 103);
+            this.altura.Location = new System.Drawing.Point(116, 119);
             this.altura.Name = "altura";
             this.altura.Size = new System.Drawing.Size(98, 17);
             this.altura.TabIndex = 7;
@@ -145,7 +141,7 @@
             // Bonito
             // 
             this.Bonito.AutoSize = true;
-            this.Bonito.Location = new System.Drawing.Point(116, 57);
+            this.Bonito.Location = new System.Drawing.Point(116, 68);
             this.Bonito.Name = "Bonito";
             this.Bonito.Size = new System.Drawing.Size(156, 17);
             this.Bonito.TabIndex = 8;
@@ -164,35 +160,33 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // palindromo
+            // button4
             // 
-            this.palindromo.AutoSize = true;
-            this.palindromo.Location = new System.Drawing.Point(116, 126);
-            this.palindromo.Name = "palindromo";
-            this.palindromo.Size = new System.Drawing.Size(178, 17);
-            this.palindromo.TabIndex = 10;
-            this.palindromo.TabStop = true;
-            this.palindromo.Text = "Dime si mi nombre es palindromo";
-            this.palindromo.UseVisualStyleBackColor = true;
-            this.palindromo.CheckedChanged += new System.EventHandler(this.palindromo_CheckedChanged);
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Location = new System.Drawing.Point(428, 129);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(180, 58);
+            this.button4.TabIndex = 11;
+            this.button4.Text = "¿Cuántos servicios?";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // mayusculas
+            // contLbl
             // 
-            this.mayusculas.AutoSize = true;
-            this.mayusculas.Location = new System.Drawing.Point(116, 149);
-            this.mayusculas.Name = "mayusculas";
-            this.mayusculas.Size = new System.Drawing.Size(194, 17);
-            this.mayusculas.TabIndex = 11;
-            this.mayusculas.TabStop = true;
-            this.mayusculas.Text = "Convierte mi nombre en mayusculas";
-            this.mayusculas.UseVisualStyleBackColor = true;
-            this.mayusculas.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.contLbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.contLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.contLbl.Location = new System.Drawing.Point(443, 195);
+            this.contLbl.Name = "contLbl";
+            this.contLbl.Size = new System.Drawing.Size(148, 92);
+            this.contLbl.TabIndex = 12;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(741, 562);
+            this.Controls.Add(this.contLbl);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
@@ -218,8 +212,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox alturaBox;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.RadioButton palindromo;
-        private System.Windows.Forms.RadioButton mayusculas;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label contLbl;
     }
 }
 

@@ -85,7 +85,7 @@ namespace WindowsFormsApplication1
                     MessageBox.Show("Tu nombre NO bonito. Lo siento.");
 
             }
-            else if (altura.Checked)
+            else
             {
                 // Enviamos nombre y altura
                 string mensaje = "3/" + nombre.Text + "/" + alturaBox.Text;
@@ -99,36 +99,8 @@ namespace WindowsFormsApplication1
                 mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
                 MessageBox.Show(mensaje);
             }
-            else if (palindromo.Checked)
-            {
-                // Enviamos nombre y altura
-                string mensaje = "4/" + nombre.Text;
-                // Enviamos al servidor el nombre tecleado
-                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-                server.Send(msg);
-
-                //Recibimos la respuesta del servidor
-                byte[] msg2 = new byte[80];
-                server.Receive(msg2);
-                mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-                MessageBox.Show(mensaje);
-            }
-            else if (mayusculas.Checked)
-            {
-                // Enviamos nombre y altura
-                string mensaje = "5/" + nombre.Text;
-                // Enviamos al servidor el nombre tecleado
-                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-                server.Send(msg);
-
-                //Recibimos la respuesta del servidor
-                byte[] msg2 = new byte[80];
-                server.Receive(msg2);
-                mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-                MessageBox.Show(mensaje);
-            }
-
-
+             
+        
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -147,24 +119,23 @@ namespace WindowsFormsApplication1
 
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
+            //Pedir numero de servicios realizados
+            string mensaje = "4/";
 
+            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
+
+            //Recibimos la respuesta del servidor
+            byte[] msg2 = new byte[80];
+            server.Receive(msg2);
+            mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+
+            //La metemos en el label con el contLbl.Text = mensaje;
+            contLbl.Text= mensaje;
         }
 
-        private void Longitud_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void palindromo_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
+     
     }
 }
